@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirect Button</title>
+</head>
+<body>
+    <!-- Button that redirects to localhost:3000/admin -->
+    <button id="adminRedirectButton">Go to Admin Page</button>
+
+    <script>
+        // Event listener for the button click
+        document.getElementById('adminRedirectButton').addEventListener('click', function() {
+            // Redirect to localhost:3000/admin
+            window.location.href = 'http://localhost:8000/admin';
+        });
+    </script>
+</body>
+</html>

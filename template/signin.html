@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Signin/Signup</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="signinstyles.css"></head>
+    <body>
+        <div class="c">
+            <div class="signin_signup">
+                <form class="sign_in_form" onSubmit="return validcheck1()" action="mainpage.html">
+                    <h2 class="title">Sign in</h2>
+                    <div class="input-field">
+                        <i class="fas fa-envelope la"></i>
+                        <input class="ut" type="text" placeholder="Email" id="email">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock la"> </i>
+                        <input class="ut" type="password" placeholder="password" id="pass0">
+                    </div>
+                    <div id="error-message"></div>
+                    <input type="submit" value="Login" class="btn">
+                    <p class="social_text">Or sign in with social platform </p>
+                    <div class="social_media">
+                        <a href="" class="social_icon">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="" class="social_icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="" class="social_icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="" class="social_icon">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                    <p class="account_text">Don't have an account ? <a href="#" id="sign_up_btn2">Sign up</a></p>
+                    <!-- Inside the sign_in_form -->
+                    <button  class="btn" id="loginAsAdminBtn" >Login as Admin</button>
+                    
+                </form>
+                <form class="sign_up_form" onSubmit="return validcheck()" action="mainpage.html">
+                    <h2 class="title">Sign up</h2>
+                    <div class="input-field">
+                        <i class="fas fa-user la"> </i>
+                        <input class="ut" type="text" placeholder="Username" id="Username">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-envelope la"></i>
+                        <input type="text" placeholder="Email" class="ut" id="email">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock la"> </i>
+                        <input class="ut" type="password" id="pass1" placeholder="password">
+                    </div>
+                    <div class="input-field">
+                        <i class="fas fa-lock la"> </i>
+                        <input class="ut" type="password" id="pass2" placeholder="confirm password">
+                    </div>
+                    <div id="error-message-signup"></div>
+                    <input type="submit" value="Sign up" class="btn">
+                    <p class="social_text">Or sign in with social platform </p>
+                    <div class="social_media">
+                        <a href="" class="social_icon">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                        <a href="" class="social_icon">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="" class="social_icon">
+                            <i class="fab fa-google"></i>
+                        </a>
+                        <a href="" class="social_icon">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                    </div>
+                    <p class="account_text">Already have an account ? <a href="#" id="sign_in_btn2">Sign in</a></p>
+                </form>
+                
+            </div>
+            <div class="panel_container">
+                <div class="panel left_panel">
+                    <div class="content">
+                        <h3>Why Sign up?</h3>
+                        <p><strong style="font-size: 24px;">By signing up on our website, you can receive email notifications about relevant information and updates.</strong></p>
+                        <button class="btn" id="sign_in_btn">Sign in</button>
+                    </div>
+                    
+                </div>
+                <div class="panel right_panel">
+                    <div class="content">
+                        <h3>New to our Website?</h3>
+                        <p><strong style="font-size: 24px;">Our website provides easy access to Himalayan flora details, characteristics, and data analysis, offering valuable insights and graphical sales and profit analysis.</strong></p>
+                        <button class="btn" id="sign_up_btn">Sign up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="signin.js"></script>
+    </body>
+</html>

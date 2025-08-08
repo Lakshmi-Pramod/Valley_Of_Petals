@@ -1,0 +1,16 @@
+/* custom_admin.css */
+
+/* Change header background color to violet */
+#header {
+    background-color: violet;
+}
+
+/* Update header text */
+#header h1, #branding h1 {
+    color: white; /* Change header text color */
+    font-size: 24px; /* Adjust font size if needed */
+    font-weight: normal; /* Optionally adjust font weight */
+    text-align: center; /* Center-align header text */
+}
+
+/* Optionally style the header logo */

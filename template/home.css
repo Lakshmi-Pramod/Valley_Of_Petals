@@ -1,0 +1,194 @@
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  video { 
+       height: 100%;
+      width: 100%;
+      margin: 0px;
+      right: 0;
+      bottom: 0;
+      left: 0; 
+      width: 100%;
+     height: 100%;
+     object-fit:fill;
+     z-index: -1;
+    
+     
+  
+   }  
+   
+  @import url("https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900");
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  body {
+    display: flex;
+    background: #000;
+    min-height: 100vh;
+    width: 90%;
+   
+    
+  
+    
+  }
+  
+  
+  
+  .content h2 {
+    
+    font-size: 6em;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    align-items: center;
+    justify-content: center;
+    
+    right: -150px;
+    display: flex;
+    
+    
+  }
+  
+  .content h2:nth-child(1) {
+    color: transparent;
+    -webkit-text-stroke: 2px #ffffff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  .content h2:nth-child(2) {
+    color: #ffffff;
+    animation: animate 4s ease-in-out infinite;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+  }
+  
+  @keyframes animate {
+    0%,
+    100% {
+      clip-path: polygon(
+        0% 45%,
+        16% 44%,
+        33% 50%,
+        54% 60%,
+        70% 61%,
+        84% 59%,
+        100% 52%,
+        100% 100%,
+        0% 100%
+      );
+    }
+  
+    50% {
+      clip-path: polygon(
+        0% 60%,
+        15% 65%,
+        34% 66%,
+        51% 62%,
+        67% 50%,
+        84% 45%,
+        100% 46%,
+        100% 100%,
+        0% 100%
+      );
+    }
+  }
+  h2
+  {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+    
+
+  }
+  @import 'https://fonts.googleapis.com/css?family=Raleway';
+  /* Pull up  */
+  div.pullUp a:before
+  {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      left: 0px;
+      bottom: 0px;
+      content: '';
+      background: #FFF;
+      opacity: 0.3;
+      transition: all 0.3s;
+  }
+  
+  div.pullUp a:hover:before
+  {
+      height: 100%;
+  }
+  div.container
+  {
+      font-family: Raleway;
+      margin: 0 auto;
+     
+  
+      
+  }
+  .explore-button {
+    background-color: transparent;
+    border: 5px solid white;
+    color: white;
+    width:33%;
+    padding: 20px 95px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family: sans-serif ;
+    font-size: 35px;
+    margin: 4px 38%;
+    cursor: pointer;
+    border-radius: 50px;
+    margin-top: -10%;
+}
+
+.explore-button:hover {
+    background-color: white;
+    color: black;
+}
+  div.container a
+  {
+      color: white;
+      text-decoration: none;
+      font: 25px Raleway;
+      margin: 0px 10px;
+      padding: 10px 10px;
+      position: relative;
+      
+      cursor: pointer;
+  }
+  li{
+    float: left;
+    text-decoration: none;
+    list-style: none;
+    
+  }
+  ul
+  {
+    margin: auto;
+    margin-top: 20px;
+    width: fit-content;
+  }
+  h1{
+    color: brown;
+  }
+  .aa
+  {
+    height: 77px;
+    width: 77px;
+    
+    margin-top: 0px;
+    text-align: left;
+  }

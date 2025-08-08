@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="explore.css">
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #search {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #search-btn {
+            padding: 10px 20px;
+            background-color: rgb(151, 80, 175);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .popup-content {
+            background-color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            display: flex;
+        }
+
+        .popup-image {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .popup-details {
+            width: 60%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #popup-title {
+            text-align: left;
+            color: #137c39;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        #popup-description {
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-region{
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-soil{
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-season{
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-altituderange {
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-climate{
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: green;
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .flower-card {
+            cursor: pointer;
+        }
+
+        .flower-card img {
+            width: 100%;
+            height: auto;
+        }
+
+.flower-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.flower-card img {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.flower-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.flower-card:hover:before {
+    opacity: 1;
+}
+
+.flower-card-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    z-index: 1; /* Ensure text appears above the background */
+    display: none; /* Initially hide the text */
+}
+
+.flower-card:hover .flower-card-text {
+    display: block; /* Show the text on hover */
+}
+.flower-card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.flower-card:hover {
+    transform: scale(1.1);
+}
+
+
+
+
+
+
+
+/* Rest of your existing CSS */
+
+    </style>
+    <title>Flower Gallery</title>
+</head>
+
+<body>
+    <header>
+        <div class="container pullUp">
+            <ul style="margin-left: 33%;">
+                <li></li>
+                <li><a href="mainpage.html">Home</a></li>
+                <li><a href="explorepage.html">Explore</a></li>
+                <li><a href="signin.html">Login</a></li>
+                <li><a href="graph.html">Analysis</a></li>
+                <li><a href="tables_display.html">Tables</a></li>
+            </ul>
+        </div>
+        <!--<div id="search-container">
+            <input type="text" id="search" placeholder="Search for flowers...">
+            <button id="search-btn" onclick="search()">Search</button>
+        </div>
+    -->
+    </header>
+
+   
+
+        <section class="flower-cards" style="margin-left: 50px;">
+            <!-- Flower cards will be dynamically generated here by JS -->
+        </section>
+
+        <!-- Popups Container -->
+        <div class="popups-container" id="popupsContainer"></div>
+
+        <div class="popup" id="popup">
+            <div class="popup-content">
+                <img src="" alt="Popup Image" class="popup-image">
+                <div class="popup-details">
+                    <h3 id="popup-title"></h3>
+                    <p id="popup-description"></p>
+                    <button class="close-btn" onclick="closePopup()">Close</button>
+                </div>
+            </div>
+        </div>
+
+        
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the flower-cards container
+            const flowerCardsContainer = document.querySelector('.flower-cards');
+            // Get the popups container
+            const popupsContainer = document.getElementById('popupsContainer');
+
+            // Assuming you have an array of flower data
+            const flowers = [
+            { title: 'Rhododendron arboreum', region: 'Region: Chamoli, Uttarakhand',climate: 'Climate: Temperate',altituderange: 'AltitudeRange: 500-2000 meters',season: 'Season: Spring',soil: 'Soil: Loamy', image: 'f1.jpg' },
+            { title: 'Cedrus deodara', region: 'Region: Kullu, Himachal Pradesh',climate: 'Climate: Cold',altituderange: 'AltitudeRange: 1500-3000 meters',season: 'Season: Winter',soil: 'Soil: Sandy',  image: 'f3.jpg' },
+            { title: 'Prunus cerasoides', region: 'Region: Pithoragarh, Uttarakhand',climate: 'Climate: Alpine',altituderange: 'AltitudeRange: 2500-4000 meters',season: 'Season: Summer',soil: 'Soil: Rocky',  image: 'f20.jpg' },
+            { title: 'Aconitum heterophyllum', region: 'Region: Mandi, Himachal Pradesh',climate: 'Climate: Subalpine',altituderange: 'AltitudeRange: 1000-2500 meters',season: 'Season: Monsoon',soil: 'Soil: Clayey',  image: 'f6.jpg' },
+            { title: 'Saussurea obvallata', region: 'Region: Chamoli, Uttarakhand',climate: 'Climate: Alpine',altituderange: 'AltitudeRange: 3000-5000 meters',season: 'Season: Spring',soil: 'Soil: Silty',  image: 'f7.jpg' },
+            { title: 'Juniperus indica', region: 'Region: Shimla, Himachal Pradesh',climate: 'Climate: Temperate',altituderange: 'AltitudeRange: 2000-3500 meters',season: 'Season: Autumn',soil: 'Soil: Loamy',  image: 'f9.jpg' },
+            { title: 'Rheum australe', region: 'Region: Kangra, Himachal Pradesh',climate: 'Climate: Subtropical',altituderange: 'AltitudeRange: 500-1500 meters',season: 'Season: Winter',soil: 'Soil: Sandy',  image: 'f10.jpg' },
+            { title: 'Abies spectabilis', region: 'Region: Chamoli, Uttarakhand',climate: 'Climate: Alpine',altituderange: 'AltitudeRange: 2500-4000 meters',season: 'Season: Summer',soil: 'Soil: Rocky',  image: 'f11.jpg' },
+            { title: 'Anaphalis triplinervis', region: 'Region: Chamoli, Uttarakhand',climate: 'Climate: Subalpine',altituderange: 'AltitudeRange: 1500-3000 meters',season: 'Season: Monsoon',soil: 'Soil: Clayey',  image: 'f12.jpg' },
+            { title: 'Taxus wallichiana', region: 'Region: Pithoragarh, Uttarakhand',climate: 'Climate: Cold',altituderange: 'AltitudeRange: 2000-3500 meters',season: 'Season: Spring',soil: 'Soil: Silty',  image: 'f13.jpg' },
+            { title: 'Swertia chirayita', region: 'Region: Chamoli, Uttarakhand',climate: 'Climate: Subalpine',altituderange: 'Altitude Range: 3000-5000 meters',season: 'Season: Autumn',soil: 'Soil: Loamy',  image: 'f16.jpg' },
+            { title: 'Ephedra gerardiana', region: 'Region: Kullu, Himachal Pradesh',climate: 'Climate: Cold',altituderange: 'Altitude Range: 1000-2500 meters',season: 'Season: Winter',soil: 'Soil: Sandy',  image: 'f17.jpg' },
+            { title: 'Primula denticulata', region: 'Region: Chamoli, Uttarakhand',climate: 'Climate: Alpine',altituderange: 'Altitude Range: 3500-5500 meters',season: 'Season: Spring',soil: 'Soil: Loamy',  image: 'f18.jpg' },
+            { title: 'Arnebia euchroma', region: 'Region: Pithoragarh, Uttarakhand',climate: 'Climate: Subalpine',altituderange: 'Altitude Range: 1500-3000 meters',season: 'Season: Monsoon',soil: 'Soil: Rocky',  image: 'f19.jpg' },
+            { title: 'Bergenia ciliata', region: 'Region: Kangra, Himachal Pradesh',climate: 'Climate: Subtropical',altituderange: 'Altitude Range: 500-1500 meters',season: 'Season: Summer',soil: 'Soil: Silty',  image: 'f4.jpg' },
+            { title: 'Saraca asoca', region: 'Region: Chamoli, Uttarakhand',climate: 'Climate: Cold',altituderange: 'Altitude Range: 2500-4000 meters',season: 'Season: Winter',soil: 'Soil: Clayey',  image: 'f2.jpg' },
+            { title: 'Pedicularis hoffmeisteri', region: 'Region: Mandi, Himachal Pradesh',climate: 'Climate: Temperate',altituderange: 'Altitude Range: 1000-2500 meters',season: 'Season: Spring',soil: 'Soil: Loamy',  image: 'f27.jpg' },
+            { title: 'Viola biflora', region: 'Region: Almora, Uttarakhand',climate: 'Climate: Alpine',altituderange: 'Altitude Range: 3000-5000 meters',season: 'Season: Autumn',soil: 'Soil: Sandy',  image: 'f28.jpg' },
+            { title: 'Paeonia emodi', region: 'Region: Shimla, Himachal Pradesh',climate: 'Climate: Subtropical',altituderange: 'Altitude Range: 500-1500 meters',season: 'Season: Monsoon',soil: 'Soil: Clayey',  image: 'f21.jpg' },
+            { title: 'Buddleja crispa', region: 'Region: Chamoli, Uttarakhand',climate: 'Climate: Alpine',altituderange: 'Altitude Range: 3500-5500 meters',season: 'Season: Summer',soil: 'Soil: Rocky',  image: 'f15.jpg' },
+            
+            // Add more flower data as needed
+            ];
+
+            // Generate flower cards and popups
+            flowers.forEach((flower, index) => {
+              // Flower card
+const card = document.createElement('div');
+card.classList.add('flower-card');
+card.dataset.index = index;
+card.innerHTML = `
+    <img src="${flower.image}" alt="${flower.title}">
+    <div class="flower-card-text">${flower.title}</div>
+`;
+
+// Add event listener to each card
+card.addEventListener('click', () => {
+    // Display details in the popup
+    showPopup(flower.title,flower.image,flower.region,flower.climate,flower.altituderange,flower.season,flower.soil);
+});
+
+flowerCardsContainer.appendChild(card);
+
+                // Popup
+                const popup = document.createElement('div');
+                popup.classList.add('popup');
+                popup.innerHTML = `
+                    <div class="popup-content">
+                        <img src="" alt="Popup Image" class="popup-image">
+                        <div class="popup-details">
+                            <h3 id="popup-title"></h3>
+                            <p id="popup-soil"></p>
+                            <p id="popup-altituderange"></p>
+                            <p id="popup-season"></p>
+                            <p id="popup-climate"></p>
+                            <p id="popup-region"></p>
+                            <button class="close-btn" onclick="closePopup()">Close</button>
+                        </div>
+                    </div>
+                `;
+                popupsContainer.appendChild(popup);
+            });
+        });
+
+        function showPopup(title, image,region,climate,soil,season,altituderange) {
+            // Update popup content
+            document.querySelector('.popup-image').src = image;
+            document.getElementById('popup-title').innerText = title;
+             document.getElementById('popup-region').innerText = region;
+             document.getElementById('popup-climate').innerText = climate;
+             document.getElementById('popup-soil').innerText = soil;
+             document.getElementById('popup-season').innerText = season;
+             document.getElementById('popup-altituderange').innerText = altituderange;
+
+
+            // Show the popup
+            document.querySelector('.popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            // Hide the popup
+            document.querySelector('.popup').style.display = 'none';
+        }
+
+        function search() {
+            // Implement your search functionality here
+            alert("Search functionality will be implemented here.");
+        }
+    </script>
+</body>
+
+</html>

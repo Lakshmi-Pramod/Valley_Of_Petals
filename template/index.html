@@ -1,0 +1,34 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch Records</title>
+</head>
+<body>
+    <button id="fetchButton">Fetch Records</button>
+    <div id="recordsDisplay"></div>
+
+    <script>
+        document.getElementById('fetchButton').addEventListener('click', function() {
+            fetch('http://127.0.0.1:8000/api/get_first_10_records/')
+                .then(response => response.json())
+                .then(data => {
+                    // Display the retrieved records
+                    const recordsDisplay = document.getElementById('recordsDisplay');
+                    recordsDisplay.innerHTML = '<h2>First 10 Records:</h2>';
+                    data.forEach(record => {
+                        // Loop through key-value pairs and display separately
+                        Object.keys(record).forEach(key => {
+                            recordsDisplay.innerHTML += `<p><strong>${key}:</strong> ${record[key]}</p>`;
+                        });
+                        recordsDisplay.innerHTML += '<hr>'; // Separate records with a horizontal line
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching data:', error);
+                });
+        });
+    </script>
+</body>
+</html>

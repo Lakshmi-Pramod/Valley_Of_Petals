@@ -1,0 +1,64 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+   
+    color: #fff; /* White text */
+    overflow-x: hidden;
+}
+
+header {
+    
+    color: black; /* Default text color */
+    padding: 10px 0;
+    text-align: center;
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for background color and text color */
+}
+
+header ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header li {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+header a {
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    color: black; /* Default text color */
+    transition: color 0.3s; /* Smooth transition for text color */
+}
+
+header a:hover {
+    color: black; /* Text color on hover */
+}
+
+header a:before {
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    left: 0px;
+    bottom: 0px;
+    content: '';
+    background: #0c0c0c;
+    opacity: 0.3;
+    transition: all 0.3s;
+}
+
+header a:hover:before {
+    height: 100%;
+}
+
+canvas {
+    display: block;
+    margin: 20px auto;
+    width: 800px;
+    max-width: 800px;
+    height: 800px;
+}
+
+/* ... (your existing styles) */

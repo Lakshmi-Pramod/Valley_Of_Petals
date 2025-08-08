@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="explore.css">
+    <style>
+       body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            background-color: #f2f2f2;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #search-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        #search {
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        #search-btn {
+            padding: 10px 20px;
+            background-color: rgb(151, 80, 175);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+        .popup-content {
+            background-color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            height: 100%;
+            width: 100%;
+            transform: translate(-50%, -50%);
+            border-radius: 5px;
+            display: flex;
+        }
+
+        .popup-image {
+            width: 50%;
+            height: 100%;
+            object-fit: cover;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .popup-details {
+            width: 60%;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        #popup-title {
+            text-align: left;
+            color: #137c39;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        #popup-description {
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-region{
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-soil{
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-season{
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-altituderange {
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        #popup-climate{
+            text-align: left;
+            color: #137c39;
+            font-size: 1.5rem;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: green;
+            border: none;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .flower-card {
+            cursor: pointer;
+        }
+
+        .flower-card img {
+            width: 100%;
+            height: auto;
+        }
+
+.flower-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.flower-card img {
+    width: 100%;
+    height: auto;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.flower-card:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.flower-card:hover:before {
+    opacity: 1;
+}
+
+.flower-card-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    text-align: center;
+    z-index: 1; /* Ensure text appears above the background */
+    display: none; /* Initially hide the text */
+}
+
+.flower-card:hover .flower-card-text {
+    display: block; /* Show the text on hover */
+}
+.flower-card {
+    transition: transform 0.3s ease-in-out;
+}
+
+.flower-card:hover {
+    transform: scale(1.1);
+}
+
+/* Rest of your existing CSS */
+
+    </style>
+    <title>Flower Gallery</title>
+    <script>
+        function search() {
+    const userInput = document.querySelector('#search').value.trim().toLowerCase();
+
+    if (userInput === "flora") {
+        fetch('http://127.0.0.1:8000/api/flora/')
+            .then(response => response.json())
+            .then(data => {
+                const recordsDisplay = document.getElementById('display');
+                recordsDisplay.innerHTML = ''; // Clear previous content
+
+                recordsDisplay.innerHTML += '<h2>Flora Records:</h2>';
+                data.forEach(record => {
+                    Object.keys(record).forEach(key => {
+                        recordsDisplay.innerHTML += `<p><strong>${key}:</strong> ${record[key]}</p>`;
+                    });
+                    recordsDisplay.innerHTML += '<hr>';
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    } 
+    else if (userInput === "characteristics") {
+        fetch('http://127.0.0.1:8000/api/characteristics/')
+            .then(response => response.json())
+            .then(data => {
+                const recordsDisplay = document.getElementById('display');
+                recordsDisplay.innerHTML = ''; // Clear previous content
+
+                recordsDisplay.innerHTML += '<h2>Characteristics Records:</h2>';
+                data.forEach(record => {
+                    Object.keys(record).forEach(key => {
+                        recordsDisplay.innerHTML += `<p><strong>${key}:</strong> ${record[key]}</p>`;
+                    });
+                    recordsDisplay.innerHTML += '<hr>';
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    } 
+    else if (userInput === "marketvalue") {
+        fetch('http://127.0.0.1:8000/api/marketValue/')
+            .then(response => response.json())
+            .then(data => {
+                const recordsDisplay = document.getElementById('display');
+                recordsDisplay.innerHTML = ''; // Clear previous content
+
+                recordsDisplay.innerHTML += '<h2>MarketValue Records:</h2>';
+                data.forEach(record => {
+                    Object.keys(record).forEach(key => {
+                        recordsDisplay.innerHTML += `<p><strong>${key}:</strong> ${record[key]}</p>`;
+                    });
+                    recordsDisplay.innerHTML += '<hr>';
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+    else if (userInput === "viewer") {
+        fetch('http://127.0.0.1:8000/api/Viewer/')
+            .then(response => response.json())
+            .then(data => {
+                const recordsDisplay = document.getElementById('display');
+                recordsDisplay.innerHTML = ''; // Clear previous content
+
+                recordsDisplay.innerHTML += '<h2>Viewer Records:</h2>';
+                data.forEach(record => {
+                    Object.keys(record).forEach(key => {
+                        recordsDisplay.innerHTML += `<p><strong>${key}:</strong> ${record[key]}</p>`;
+                    });
+                    recordsDisplay.innerHTML += '<hr>';
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+    else if (userInput === "notifications") {
+        fetch('http://127.0.0.1:8000/api/Notification/')
+            .then(response => response.json())
+            .then(data => {
+                const recordsDisplay = document.getElementById('display');
+                recordsDisplay.innerHTML = ''; // Clear previous content
+
+                recordsDisplay.innerHTML += '<h2>Notifications Records:</h2>';
+                data.forEach(record => {
+                    Object.keys(record).forEach(key => {
+                        recordsDisplay.innerHTML += `<p><strong>${key}:</strong> ${record[key]}</p>`;
+                    });
+                    recordsDisplay.innerHTML += '<hr>';
+                });
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }
+    else
+    {
+        alert("Please enter a valid table name");
+    }
+}
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <div class="container pullUp">
+            <ul style="margin-left: 30%;">
+                <li></li>
+                <li><a href="mainpage.html">Home</a></li>
+                <li><a href="explorepage.html">Explore</a></li>
+                <li><a href="signin.html">Login</a></li>
+                <li><a href="graph.html">Analysis</a></li>
+                <li><a href="tables_display.html">Tables</a></li>
+            </ul>
+        </div>
+        <div id="search-container">
+            <input type="text" id="search" placeholder="Search for tables...">
+            <button id="search-btn" onclick="search()">Search</button>
+        </div>
+       <div id="display">
+
+       </div>
+    </header>
+</body>
+
+</html>
