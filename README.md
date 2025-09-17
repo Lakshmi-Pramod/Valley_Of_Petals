@@ -33,7 +33,7 @@ django-react-app/
 # Installation & Setup
 Clone the repository
 
-git clone https://github.com/your-username/django-react-app.git
+git clone https://github.com/Lakshmi-Pramod/django-react-app.git
 cd django-react-app
 # Backend Setup
 
